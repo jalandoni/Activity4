@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="row classList">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+            <br><br>
+            <div class=" card container">
+                <br>
+                <div>
+                    <label>Subject</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label>Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <br>
+                <div>
+                    <label>Email</label>
+                    <input type="text" id="email" class="form-control" required>
+                </div>
+                <br>
+                <div>
+                    <label>Course and Year</label>
+                    <input type="text" id="cy" class="form-control" required>
+                </div>
+                <center>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary save btn-outline-success" data-toggle="button"
+                        aria-pressed="false" id="enroll" autocomplete="off">Enroll
+
+                    </button>
+
+                </center>
+
+            </div>
+
+        </div>
+</body>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    $(document).ready(function () {
+        $("#enroll").click(function () {
+            var sub = $("#subject").val();
+            var name = $("#name").val();   
+            var eml = $("#email").val();       
+            var cyr = $("#cy").val();               
+            $.ajax({
+                url: "http://localhost:8080/enroll",
+                type: "POST",
+                crossDomain:true,
+                data: JSON.stringify({ sub1:sub, name1: name, email: eml, cy: cyr }),
+                success: function (data) {                   
+                    Swal.fire({
+                            type: 'success',
+                            title: 'Congrats!',
+                            text: 'You are successfully enrolled!'
+                        })
+                }
+              
+
+            });
+        });
+    });
+
+
+</script>
+
+</html>
